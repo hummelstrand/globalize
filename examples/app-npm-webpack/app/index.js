@@ -1,37 +1,33 @@
-var currencyFormatter, dateFormatter, numberFormatter, relativeTimeFormatter, startTime,
-	Globalize = require( "globalize" );
-
-startTime = new Date();
-
-currencyFormatter = Globalize.currencyFormatter( "USD" );
-dateFormatter = Globalize.dateFormatter({ datetime: "medium" });
-numberFormatter = Globalize.numberFormatter({ maximumFractionDigits: 2 });
-relativeTimeFormatter = Globalize.relativeTimeFormatter( "second" );
-
-document.getElementById( "intro-1" ).innerHTML = Globalize.formatMessage( "intro-1" );
+var Globalize = require( "globalize" );
+var startTime = new Date();
 
 // Standalone table.
-document.getElementById( "currency-label" ).innerHTML = Globalize.formatMessage( "currency-label" );
-document.getElementById( "currency" ).innerHTML = currencyFormatter( 69900 );
+var numberFormatter = Globalize.numberFormatter({ maximumFractionDigits: 2 });
+document.getElementById( "number" ).textContent = numberFormatter( 12345.6789 );
 
-document.getElementById( "date-label" ).innerHTML = Globalize.formatMessage( "date-label" );
-document.getElementById( "date" ).innerHTML = dateFormatter( new Date() );
+var currencyFormatter = Globalize.currencyFormatter( "USD" );
+document.getElementById( "currency" ).textContent = currencyFormatter( 69900 );
 
-document.getElementById( "number-label" ).innerHTML = Globalize.formatMessage( "number-label" );
-document.getElementById( "number" ).innerHTML = numberFormatter( 12345.6789 );
+var dateFormatter = Globalize.dateFormatter({ datetime: "medium" });
+document.getElementById( "date" ).textContent = dateFormatter( new Date() );
 
-document.getElementById( "relative-time-label" ).innerHTML = Globalize.formatMessage( "relative-time-label" );
-document.getElementById( "relative-time" ).innerHTML = relativeTimeFormatter( 0 );
+var relativeTimeFormatter = Globalize.relativeTimeFormatter( "second" );
+document.getElementById( "relative-time" ).textContent = relativeTimeFormatter( 0 );
 
 // Messages.
-document.getElementById( "message-1" ).innerHTML = Globalize.formatMessage( "message-1", {
+document.getElementById( "intro-1" ).textContent = Globalize.formatMessage( "intro-1" );
+document.getElementById( "number-label" ).textContent = Globalize.formatMessage( "number-label" );
+document.getElementById( "currency-label" ).textContent = Globalize.formatMessage( "currency-label" );
+document.getElementById( "date-label" ).textContent = Globalize.formatMessage( "date-label" );
+document.getElementById( "relative-time-label" ).textContent = Globalize.formatMessage( "relative-time-label" );
+document.getElementById( "message-1" ).textContent = Globalize.formatMessage( "message-1", {
 	currency: currencyFormatter( 69900 ),
 	date: dateFormatter( new Date() ),
 	number: numberFormatter( 12345.6789 ),
 	relativeTime: relativeTimeFormatter( 0 )
 });
 
-document.getElementById( "message-2" ).innerHTML = Globalize.formatMessage( "message-2", {
+document.getElementById( "message-2" ).textContent = Globalize.formatMessage( "message-2", {
 	count: 3
 });
 
@@ -42,9 +38,9 @@ document.getElementById( "demo" ).style.display = "block";
 // Refresh elapsed time
 setInterval(function() {
 	var elapsedTime = +( ( startTime - new Date() ) / 1000 ).toFixed( 0 );
-	document.getElementById( "date" ).innerHTML = dateFormatter( new Date() );
-	document.getElementById( "relative-time" ).innerHTML = relativeTimeFormatter( elapsedTime );
-	document.getElementById( "message-1" ).innerHTML = Globalize.formatMessage( "message-1", {
+	document.getElementById( "date" ).textContent = dateFormatter( new Date() );
+	document.getElementById( "relative-time" ).textContent = relativeTimeFormatter( elapsedTime );
+	document.getElementById( "message-1" ).textContent = Globalize.formatMessage( "message-1", {
 		currency: currencyFormatter( 69900 ),
 		date: dateFormatter( new Date() ),
 		number: numberFormatter( 12345.6789 ),
